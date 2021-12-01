@@ -21,7 +21,7 @@ public class TicTacToe {
             {'-', '+', '-', '+', '-'},
             {'7', '|', '8', '|', '9'}
         };
-        
+
         //Creo un string para ir guardando las posiciones
         String devolverOcupadas = "";
         boolean turno = true;
@@ -38,8 +38,8 @@ public class TicTacToe {
                 mostrarTurno(turno);
                 System.out.print("Introduce la posicion (1-9): ");
                 int posicionJugador1 = scan.nextInt();
-                ponerFicha(tableroMuestra, posicionJugador1, "Jugador 1",devolverOcupadas);
-                comprobarPosicion(devolverOcupadas, tableroMuestra, posicionJugador1);
+                ponerFicha(tableroMuestra, posicionJugador1, "Jugador 1", devolverOcupadas);
+                comprobarPosicion(devolverOcupadas, tableroMuestra, posicionJugador1, scan);
                 mostrarTablero(tableroMuestra);
                 turno = false;
                 //comprobarGanador();            
@@ -48,7 +48,7 @@ public class TicTacToe {
                 System.out.print("Introduce la posicion (1-9): ");
                 int posicionJugador2 = scan.nextInt();
                 ponerFicha(tableroMuestra, posicionJugador2, "Jugador 2", devolverOcupadas);
-                comprobarPosicion(devolverOcupadas, tableroMuestra, posicionJugador2);
+                comprobarPosicion(devolverOcupadas, tableroMuestra, posicionJugador2, scan);
                 mostrarTablero(tableroMuestra);
                 turno = true;
                 //comprobarGanador();
@@ -74,8 +74,7 @@ public class TicTacToe {
         } else {
             ficha = 'O';
         }
-        
-        
+
         switch (posicion) {
             case 1:
                 tablero[0][0] = ficha;
@@ -131,25 +130,18 @@ public class TicTacToe {
 
     }
 
-    public static int comprobarPosicion(String devolverPosicion, char[][] tableroMuestra, int posicion) {
+    public static int comprobarPosicion(String devolverPosicion, char[][] tableroMuestra, int posicion, Scanner scan) {
         boolean salida;
+        //Convierto a string la posicion para poder buscarla
+        String posicionChar = String.valueOf(posicion);
         do {
-            
-            
-            
-            
-            
-            
-//            for (int i = 0; i < tableroMuestra.length; i++) {
-//                for (int j = 0; j < tableroMuestra.length; j++) {
-//                    if (tableroMuestra.equals('O') || (tableroMuestra.equals('X'))) {
-//                        salida = false;
-//                    } else {
-//                        System.out.println("No puedes poner ficha en la misma posicion.");
-//                        salida = true;
-//                    }
-//                }
-//            }
+            if (devolverPosicion.contains(posicionChar)) {
+                System.out.println("Vuelve a introducir posicion, esa ya esta ocupada.");
+                posicion=scan.nextInt();
+            } else {
+                salida = false;
+            }
+
         } while (salida = true);
         return posicion;
     }
