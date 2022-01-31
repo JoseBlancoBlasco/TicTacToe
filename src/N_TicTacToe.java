@@ -54,6 +54,9 @@ public class N_TicTacToe {
             turno++;
         } while (!ganador);
 
+        
+        int contadores [] = new int[]{0,0,0};
+        
     }
 
     public static void introduccion() {
